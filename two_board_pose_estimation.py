@@ -18,7 +18,7 @@ class Pose_Estimation:
             st.warning("You need to calibrate the camera you'll be using. See calibration project directory for details.")
             exit()
         else:
-            f = open('calibration.pckl', 'rb')  # 'calibration.pckl', 'rb'--encoding="utf8"
+            f = open('calibration_final.pckl', 'rb')  # 'calibration.pckl', 'rb'--encoding="utf8"
             (cameraMatrix, distCoeffs, _, _) = pickle.load(f)
             f.close()
             if cameraMatrix is None or distCoeffs is None:
