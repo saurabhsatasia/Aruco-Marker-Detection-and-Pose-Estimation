@@ -4,6 +4,7 @@ from cv2 import aruco
 from cv2.aruco import CharucoBoard_create, Dictionary_get
 import pickle
 import glob
+import pandas as pd
 
 class Camera_Calibration:
 
@@ -25,7 +26,7 @@ class Camera_Calibration:
 
         # Images for calibration with the naming scheme
         images = glob.glob(image_path) # image_path='./calib-*.jpg'
-
+        imgs = []
         for iname in images:
             img = cv2.imread(iname) # Open the image
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # Grayscale the image
@@ -50,8 +51,9 @@ class Camera_Calibration:
                 proportion = max(img.shape) / 1000.0
                 img = cv2.resize(img, (int(img.shape[1] / proportion), int(img.shape[0] / proportion)))
                 # Pause to display each image, waiting for key press
-                cv2.imshow('Charuco board', img)
-                cv2.waitKey(0)
+                # cv2.imshow('Charuco board', img)
+                imgs.append(imgs)
+                # cv2.waitKey(0)
             else:
                 print("Not able to detect a charuco board in image: {}".format(iname))
                 st.write("Not able to detect a charuco board in image: {}".format(iname))
@@ -68,7 +70,7 @@ class Camera_Calibration:
             st.write("Calibration was unsuccessful. We couldn't detect charucoboards in any of the images supplied. Try changing the patternSize passed into Charucoboard_create(), or try different pictures of charucoboards.")
             # Exit for failure
             exit()
-        return corners_all, ids_all, image_size
+        return corners_all, ids_all, image_size, imgs
 
     def calibration(self, corners_all, ids_all, image_size):
         calibration, cameraMatrix, distCoeffs, rot_vecs, trans_vecs = aruco.calibrateCameraCharuco(charucoCorners=corners_all,
@@ -78,22 +80,8 @@ class Camera_Calibration:
                                                                                            cameraMatrix=None,
                                                                                            distCoeffs=None)
 
-        # calibration results
-        print("\nCAM-Matrix = \n", cameraMatrix)
-        st.subheader("CAM-Matrix =")
-        st.success(cameraMatrix)
 
-        print("\nDistortion coefficients = \n", distCoeffs)
-        st.subheader("Distortion coefficients =")
-        st.success(distCoeffs)
 
-        print("\nRotation = \n", rot_vecs)
-        st.subheader("Rotation Vectors =")
-        st.success(rot_vecs)
-
-        print("\nTranslation = \n", trans_vecs)
-        st.subheader("Translation Vectors =")
-        st.success(trans_vecs)
 
         return cameraMatrix, distCoeffs, rot_vecs, trans_vecs
 

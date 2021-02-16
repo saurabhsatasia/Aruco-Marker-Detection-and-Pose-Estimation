@@ -10,6 +10,8 @@ class Pose_Estimation:
         # Constant parameters used in Aruco methods
         self.ARUCO_PARAMETERS = aruco.DetectorParameters_create()
         self.ARUCO_DICT = aruco.Dictionary_get(aruco.DICT_4X4_1000)
+        self.button = st.button('End Pose Estimation')
+        self.st_image = st.empty()
 
 
     def load_check_pickle(self, pickle_path):
@@ -76,9 +78,14 @@ class Pose_Estimation:
                             # Draw the camera posture calculated from the gridboard
                             QueryImg = aruco.drawAxis(QueryImg, cameraMatrix, distCoeffs, rvec, tvec, 0.3)
 
-                cv2.imshow('QueryImage', QueryImg) # Display our image
-            if cv2.waitKey(1) & 0xFF == ord('q'): # Exit at the end of the video on the 'q' keypress
-                break
+                self.st_image.image(QueryImg, channels="BGR") # Display our image
+
+                # cv2.imshow('QueryImage', QueryImg)
+            # if cv2.waitKey(1) & 0xFF == ord('q'): # Exit at the end of the video on the 'q' keypress
+            #     break
+            if self.button == True:
+                self.st_image.empty()
+
 
         cv2.destroyAllWindows()
 
@@ -123,9 +130,12 @@ class Pose_Estimation:
                     # rvecs, tvecs = aruco.estimatePoseSingleMarkers(corners, 1, cameraMatrix, distCoeffs)
                     # for rvec, tvec in zip(rvecs, tvecs):
                     # QueryImg = aruco.drawAxis(QueryImg, cameraMatrix, distCoeffs, rvec, tvec, 1)
-                cv2.imshow('QueryImage', QueryImg) # Display our image
+                # cv2.imshow('QueryImage', QueryImg) # Display our image
+                self.st_image.image(QueryImg, channels="BGR")
 
-            if cv2.waitKey(1) & 0xFF == ord('q'): # Exit at the end of the video on the 'q' keypress
-                break
+            # if cv2.waitKey(1) & 0xFF == ord('q'): # Exit at the end of the video on the 'q' keypress
+            #     break
+            if self.button == True:
+                self.st_image.empty()
 
         cv2.destroyAllWindows()
