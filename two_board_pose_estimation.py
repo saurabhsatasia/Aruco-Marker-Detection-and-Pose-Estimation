@@ -131,7 +131,7 @@ class Pose_Estimation:
                     # for rvec, tvec in zip(rvecs, tvecs):
                     # QueryImg = aruco.drawAxis(QueryImg, cameraMatrix, distCoeffs, rvec, tvec, 1)
                 # cv2.imshow('QueryImage', QueryImg) # Display our image
-                self.st_image.image(QueryImg, channels="BGR")
+                self.st_image.image(QueryImg, channels='BGR')
 
             # if cv2.waitKey(1) & 0xFF == ord('q'): # Exit at the end of the video on the 'q' keypress
             #     break

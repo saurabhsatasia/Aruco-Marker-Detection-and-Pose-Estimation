@@ -2,6 +2,7 @@ import streamlit as st
 from one_calibrate_camera import Camera_Calibration
 from two_board_pose_estimation import Pose_Estimation
 
+# @st.cache(allow_output_mutation=True)
 def main():
     imgs = None
     st.sidebar.image('./220px-Poznań_University_of_Technology.png', width=275)
