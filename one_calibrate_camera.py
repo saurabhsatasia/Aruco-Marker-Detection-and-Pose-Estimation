@@ -27,6 +27,11 @@ class Camera_Calibration:
         # Images for calibration with the naming scheme
         images = glob.glob(image_path) # image_path='./calib-*.jpg'
         imgs = []
+        # cam = cv2.VideoCapture(0)
+        # while (cam.isOpened()):
+        #     ret, QueryImg = cam.
+        #     images.append(QueryImg)
+
         for iname in images:
             img = cv2.imread(iname) # Open the image
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # Grayscale the image

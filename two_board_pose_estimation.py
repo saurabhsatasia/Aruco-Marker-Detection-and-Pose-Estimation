@@ -10,7 +10,7 @@ class Pose_Estimation:
         # Constant parameters used in Aruco methods
         self.ARUCO_PARAMETERS = aruco.DetectorParameters_create()
         self.ARUCO_DICT = aruco.Dictionary_get(aruco.DICT_4X4_1000)
-        self.button = st.button('End Pose Estimation')
+        # self.button = st.button('End Pose Estimation')
         self.st_image = st.empty()
 
 
@@ -33,7 +33,7 @@ class Pose_Estimation:
     def all_pose_estimation(self, cameraMatrix, distCoeffs):
         self.CHARUCOBOARD_ROWCOUNT = 7
         self.CHARUCOBOARD_COLCOUNT = 5
-
+        self.button = st.button('End Pose Estimation')
         # Create grid board object we're using in our stream
         self.CHARUCO_BOARD = aruco.CharucoBoard_create(squaresX=self.CHARUCOBOARD_COLCOUNT,
                                                        squaresY=self.CHARUCOBOARD_ROWCOUNT,
@@ -92,7 +92,7 @@ class Pose_Estimation:
     def single_pose_estimation(self, cameraMatrix, distCoeffs):
         self.CHARUCOBOARD_ROWCOUNT = 2
         self.CHARUCOBOARD_COLCOUNT = 2
-
+        self.button = st.button('End Pose Estimation')
         # Create grid board object we're using in our stream
         self.CHARUCO_BOARD = aruco.GridBoard_create(markersX=self.CHARUCOBOARD_COLCOUNT, markersY=self.CHARUCOBOARD_ROWCOUNT,
                                                     markerLength=0.09,
