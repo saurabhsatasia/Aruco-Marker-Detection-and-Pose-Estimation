@@ -1,0 +1,5 @@
+numpy==1.19.2
+opencv-contrib-python==4.5.1.48
+pickle-mixin==1.0.2
+pip==21.0.1
+setuptools==53.0.0
